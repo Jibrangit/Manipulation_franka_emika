@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+
+    <node pkg = "frames_franka" type = "camera_getter" name = "camera_getter"/>
+    <node pkg = "frames_franka" type = "centroid_getter" name = "centroid_getter" output = "screen"/>
+    <node pkg = "frames_franka" type = "object_listener" name = "object_wrt_world" output = "screen"/>
+
+</launch>

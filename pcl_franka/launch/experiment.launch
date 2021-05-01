@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+
+    <node name = "pcl_franka1" type = "pcl_franka1" pkg = "pcl_franka"/>
+    <node name = "pcl_visualizer" type = "pcl_visualize_franka1" pkg = "pcl_franka"/> 
+    <node name = "pcl_segmentation_franka1" type = "pcl_segmentation_franka1" pkg = "pcl_franka" output = "screen"/>
+    <node name = "pcl_franka_cube" type = "pcl_franka_cube" pkg = "pcl_franka" output = "screen"/>
+    <!-- <node name = "pcl_write_franka1" type = "pcl_write_franka1" pkg = "chapter10_tutorials"/> -->
+
+</launch>

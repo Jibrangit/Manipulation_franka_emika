@@ -1,0 +1,38 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/jibran/ws_moveit/devel/include/**",
+        "/opt/ros/melodic/include/**",
+        "/home/jibran/ws_moveit/src/moveit/moveit_planners/chomp/chomp_motion_planner/include/**",
+        "/home/jibran/ws_moveit/src/frames_franka/include/**",
+        "/home/jibran/ws_moveit/src/franka_msgs/include/**",
+        "/home/jibran/ws_moveit/src/geometric_shapes/include/**",
+        "/home/jibran/ws_moveit/src/moveit/moveit_planners/chomp/chomp_interface/include/**",
+        "/home/jibran/ws_moveit/src/moveit_resources/prbt_ikfast_manipulator_plugin/include/**",
+        "/home/jibran/ws_moveit/src/moveit/moveit_ros/benchmarks/include/**",
+        "/home/jibran/ws_moveit/src/moveit/moveit_plugins/moveit_ros_control_interface/include/**",
+        "/home/jibran/ws_moveit/src/moveit/moveit_ros/move_group/include/**",
+        "/home/jibran/ws_moveit/src/moveit/moveit_ros/occupancy_map_monitor/include/**",
+        "/home/jibran/ws_moveit/src/moveit/moveit_ros/robot_interaction/include/**",
+        "/home/jibran/ws_moveit/src/moveit/moveit_ros/moveit_servo/include/**",
+        "/home/jibran/ws_moveit/src/moveit/moveit_setup_assistant/include/**",
+        "/home/jibran/ws_moveit/src/moveit/moveit_plugins/moveit_simple_controller_manager/include/**",
+        "/home/jibran/ws_moveit/src/moveit_visual_tools/include/**",
+        "/home/jibran/ws_moveit/src/pcl_franka/include/**",
+        "/home/jibran/ws_moveit/src/moveit/moveit_planners/pilz_industrial_motion_planner/include/**",
+        "/home/jibran/ws_moveit/src/moveit/moveit_planners/pilz_industrial_motion_planner_testutils/include/**",
+        "/home/jibran/ws_moveit/src/rviz_visual_tools/include/**",
+        "/home/jibran/ws_moveit/src/moveit/moveit_planners/sbpl/core/sbpl_interface/include/**",
+        "/home/jibran/ws_moveit/src/test_cpp/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}

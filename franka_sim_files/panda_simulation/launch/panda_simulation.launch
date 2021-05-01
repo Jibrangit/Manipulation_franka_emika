@@ -1,0 +1,29 @@
+<launch>
+  <!-- Load robot description onto parameter server -->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find franka_description)/robots/panda_arm_hand.urdf.xacro" />
+
+  <!-- Necessary transformation frames -->
+  <node name="map_world_frame" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 map world 100" />
+  <node name="world_panda_frame" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 world panda_link0 100" />
+   <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="camera" args="0 0 0 0 0 0 0 world camera_link" />-->
+
+  <!-- Spawn the robot in gazebo -->
+  <node name="spawn_franka_urdf" pkg="gazebo_ros" type="spawn_model"
+  	args="-param robot_description -urdf -model robot" output="screen" />
+
+  <!-- Launch gazebo -->
+  <include file="$(find objects_world)/launch/table_world.launch"/>
+
+  <!-- Launch controllers -->
+  <include file="$(find panda_moveit_controller)/launch/main.launch" />
+
+  <!-- Finally, launch moveit -->
+  <include file="$(find panda_moveit_config)/launch/move_group.launch" />
+
+  <!-- Include joint state publisher--> 
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="/use_gui" value="false"/>
+    <rosparam param="/source_list">[/panda/joint_states]</rosparam>
+  </node>
+
+</launch>
