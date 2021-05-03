@@ -10,7 +10,7 @@ public:
     cloudHandler()
         :viewer("Cloud Viewer")
         {
-            output_sub = nh.subscribe("pcl_object", 1, &cloudHandler::outputCB, this);
+            output_sub = nh.subscribe("ObjPointCloud", 1, &cloudHandler::outputCB, this);
 
             viewer_timer = nh.createTimer(ros::Duration(0.1), &cloudHandler::timerCB, this);
 

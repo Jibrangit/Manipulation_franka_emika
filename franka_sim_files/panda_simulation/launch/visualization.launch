@@ -1,5 +1,6 @@
 <launch>
     <include file="$(find pcl_franka)/launch/experiment.launch"/>
     <include file="$(find frames_franka)/launch/frames_franka.launch"/>
+    <node pkg="pcl_franka" type="store_pcl" name="store_pcl" />
 
 </launch>

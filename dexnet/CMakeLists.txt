@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(pcl_franka)
+project(dexnet)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -8,23 +8,15 @@ project(pcl_franka)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  geometry_msgs
   pcl_conversions
   pcl_msgs
   pcl_ros
-#roscpp
+  roscpp
+  rospy
   sensor_msgs
   std_msgs
-  geometry_msgs
-  rospy
 )
-
-
-find_package(PCL REQUIRED)
-
-include_directories(include ${PCL_INCLUDE_DIRS})
-link_directories(${PCL_LIBRARY_DIRS})
-
-
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -83,7 +75,7 @@ link_directories(${PCL_LIBRARY_DIRS})
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   pcl_msgs#   sensor_msgs
+#   geometry_msgs#   pcl_msgs#   sensor_msgs#   std_msgs
 # )
 
 ################################################
@@ -117,31 +109,9 @@ link_directories(${PCL_LIBRARY_DIRS})
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES chapter10_tutorials
-#  CATKIN_DEPENDS pcl_conversions pcl_msgs pcl_ros sensor_msgs
+#  LIBRARIES dexnet
+#  CATKIN_DEPENDS geometry_msgs pcl_conversions pcl_msgs pcl_ros roscpp rospy sensor_msgs std_msgs
 #  DEPENDS system_lib
-)
-
-add_executable(pcl_franka1 src/pcl_franka1.cpp)
-target_link_libraries(pcl_franka1 ${catkin_LIBRARIES}
-                                 ${PCL_LIBRARIES})
-add_executable(pcl_segmentation_franka1 src/pcl_segmentation_franka1.cpp)
-target_link_libraries(pcl_segmentation_franka1 ${catkin_LIBRARIES}
-                                 ${PCL_LIBRARIES})
-add_executable(pcl_visualize_franka1 src/pcl_visualize_franka1.cpp)
-target_link_libraries(pcl_visualize_franka1 ${catkin_LIBRARIES}
-                                 ${PCL_LIBRARIES})
-
-add_executable(pcl_franka_cube src/pcl_franka_cube.cpp)
-target_link_libraries(pcl_franka_cube ${catkin_LIBRARIES}
-                                 ${PCL_LIBRARIES})
-
-add_executable(store_pcl src/store_pcl.cpp)
-target_link_libraries(store_pcl ${catkin_LIBRARIES}
-                                 ${PCL_LIBRARIES})    
-
-catkin_install_python(PROGRAMS src/store_img.py
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
 ###########
@@ -157,7 +127,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/chapter10_tutorials.cpp
+#   src/${PROJECT_NAME}/dexnet.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -168,7 +138,11 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/chapter10_tutorials_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/dexnet_node.cpp)
+
+add_executable(obj_to_pcd src/obj_to_pcd.cpp)
+target_link_libraries(obj_to_pcd ${catkin_LIBRARIES}
+                                 ${PCL_LIBRARIES})
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -232,7 +206,7 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_chapter10_tutorials.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_dexnet.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

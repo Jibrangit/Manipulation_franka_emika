@@ -5,6 +5,7 @@
 #include "std_msgs/MultiArrayDimension.h"
 #include "std_msgs/Float32MultiArray.h"
 #include <pcl/point_cloud.h>
+#include <pcl/io/pcd_io.h>
 #include <pcl_conversions/pcl_conversions.h>
 #include <sensor_msgs/PointCloud2.h>
 #include "geometry_msgs/Point.h"
@@ -19,6 +20,7 @@ public:
         pcl_obj_sub = nh.subscribe("pcl_franka_filtered", 10, &cloudHandler::cloudCB, this);
         obj_pub  = nh.advertise<sensor_msgs::PointCloud2>("pcl_object", 1);
         centroid_pub = nh.advertise<geometry_msgs::Point>("object_centroid", 10);
+        object_point_cloud = nh.advertise<sensor_msgs::PointCloud2>("ObjPointCloud", 1);
     }
 
     void BaseLocationCB(const std_msgs::Float32 &base_location)
@@ -30,7 +32,10 @@ public:
     {
         pcl::PointCloud<pcl::PointXYZ> cloud;
         pcl::PointCloud<pcl::PointXYZ> object_cloud;
+        pcl::PointCloud<pcl::PointXYZRGBA> ObjPointCloud;
         sensor_msgs::PointCloud2 object_output;
+        sensor_msgs::PointCloud2 obj_point_cloud;
+
 
         pcl::fromROSMsg(input, cloud);
 
@@ -95,14 +100,29 @@ public:
         //    }
         // }
 
+        for(auto i=0; i<object_cloud.size(); i++)
+        {
+            ObjPointCloud[i].x = object_cloud[i].x;
+            ObjPointCloud[i].y = object_cloud[i].y;
+            ObjPointCloud[i].z = object_cloud[i].z;
+            ObjPointCloud[i].r = 127;
+            ObjPointCloud[i].g = 0;
+            ObjPointCloud[i].b = 0;
+            ObjPointCloud[i].a = 0;
+        }
+        pcl::io::savePCDFileASCII("/home/jibran_old/catkin_ws/src/Manipulation_franka_emika/pcl_franka/pcd/object.pcd", ObjPointCloud);
+
         pcl::toROSMsg(object_cloud, object_output);
+        pcl::toROSMsg(ObjPointCloud, obj_point_cloud);
         obj_pub.publish(object_output);
+        object_point_cloud.publish(obj_point_cloud);
+
     }
 
 protected:
     ros::NodeHandle nh;
     ros::Subscriber pcl_obj_sub, base_sub;
-    ros::Publisher obj_pub, centroid_pub;
+    ros::Publisher obj_pub, centroid_pub, object_point_cloud;
     std_msgs::Float32 z_base;
 };
 
