@@ -6,8 +6,7 @@ img = np.load('/home/jibran_old/catkin_ws/src/Manipulation_franka_emika/pcl_fran
 
 plt.imshow((img))
 plt.show()
-# img = img[:, :, 0]
-# img = img.reshape()
+print(img.shape)
 
 
 

@@ -77,6 +77,7 @@ public:
         sensor_msgs::PointCloud2 output;
         pcl::toROSMsg(cloud_segmented, output);
         pcl_pub.publish(output);
+        // std::cout<<"Segmented cloud has ht, width: "<<output.height<<" "<<output.width<<std::endl;
 
     }
 

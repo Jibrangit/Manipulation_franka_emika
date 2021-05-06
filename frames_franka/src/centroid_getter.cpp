@@ -101,7 +101,7 @@ public:
     void centroidCB(const geometry_msgs::Point &centroid)
     {
         location = centroid;
-        printf("Callback received");
+        // printf("Callback received");
     }
 
     void publish_frame()

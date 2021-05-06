@@ -20,7 +20,7 @@ public:
         pcl_obj_sub = nh.subscribe("pcl_franka_filtered", 10, &cloudHandler::cloudCB, this);
         obj_pub  = nh.advertise<sensor_msgs::PointCloud2>("pcl_object", 1);
         centroid_pub = nh.advertise<geometry_msgs::Point>("object_centroid", 10);
-        object_point_cloud = nh.advertise<sensor_msgs::PointCloud2>("ObjPointCloud", 1);
+        // object_point_cloud = nh.advertise<sensor_msgs::PointCloud2>("ObjPointCloud", 1);
     }
 
     void BaseLocationCB(const std_msgs::Float32 &base_location)
@@ -99,24 +99,24 @@ public:
         //        std::cout<< object_cloud.points[j].z << std::endl;
         //    }
         // }
-
-        for(auto i=0; i<object_cloud.size(); i++)
-        {
-            ObjPointCloud[i].x = object_cloud[i].x;
-            ObjPointCloud[i].y = object_cloud[i].y;
-            ObjPointCloud[i].z = object_cloud[i].z;
-            ObjPointCloud[i].r = 127;
-            ObjPointCloud[i].g = 0;
-            ObjPointCloud[i].b = 0;
-            ObjPointCloud[i].a = 0;
-        }
-        pcl::io::savePCDFileASCII("/home/jibran_old/catkin_ws/src/Manipulation_franka_emika/pcl_franka/pcd/object.pcd", ObjPointCloud);
-
         pcl::toROSMsg(object_cloud, object_output);
-        pcl::toROSMsg(ObjPointCloud, obj_point_cloud);
         obj_pub.publish(object_output);
-        object_point_cloud.publish(obj_point_cloud);
+        // for(auto i=0; i<object_cloud.size(); i++)
+        // {
+        //     ObjPointCloud[i].x = object_cloud[i].x;
+        //     ObjPointCloud[i].y = object_cloud[i].y;
+        //     ObjPointCloud[i].z = object_cloud[i].z;
+        //     ObjPointCloud[i].r = 127;
+        //     ObjPointCloud[i].g = 0;
+        //     ObjPointCloud[i].b = 0;
+        //     ObjPointCloud[i].a = 0;
+        // }
+        // pcl::io::savePCDFileASCII("/home/jibran_old/catkin_ws/src/Manipulation_franka_emika/pcl_franka/pcd/object.pcd", ObjPointCloud);
 
+        
+        // pcl::toROSMsg(ObjPointCloud, obj_point_cloud);
+        // object_point_cloud.publish(obj_point_cloud);
+        // std::cout<<"Object cloud has ht, width: "<<object_output.height<<" "<<object_output.width<<std::endl;
     }
 
 protected:

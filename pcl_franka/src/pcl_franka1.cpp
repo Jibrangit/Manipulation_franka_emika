@@ -34,6 +34,7 @@ public:
         pass.filter(*cloud_filtered);
         pcl::toROSMsg(*cloud_filtered, output);
         pcl_pub.publish(output);
+        // std::cout<<"Filtered cloud has ht, width: "<<output.height<<" "<<output.width<<std::endl;
     }
 
 protected:

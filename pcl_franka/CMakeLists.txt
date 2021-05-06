@@ -16,6 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   geometry_msgs
   rospy
+  cv_bridge
 )
 
 
@@ -136,9 +137,13 @@ add_executable(pcl_franka_cube src/pcl_franka_cube.cpp)
 target_link_libraries(pcl_franka_cube ${catkin_LIBRARIES}
                                  ${PCL_LIBRARIES})
 
-add_executable(store_pcl src/store_pcl.cpp)
-target_link_libraries(store_pcl ${catkin_LIBRARIES}
+add_executable(pcl_to_depth_img src/pcl_to_depth_img.cpp)
+target_link_libraries(pcl_to_depth_img ${catkin_LIBRARIES}
                                  ${PCL_LIBRARIES})    
+
+add_executable(pcl_to_depth_img3 src/pcl_to_depth_img3.cpp)
+target_link_libraries(pcl_to_depth_img3 ${catkin_LIBRARIES}
+                                 ${PCL_LIBRARIES})  
 
 catkin_install_python(PROGRAMS src/store_img.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}

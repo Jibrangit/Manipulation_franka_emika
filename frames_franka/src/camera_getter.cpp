@@ -34,12 +34,12 @@ int main(int argc, char **argv)
 
     if(get_success = true)
     {
-        printf("\nYes, the pose of kinect was obtained.\n");
-        ROS_INFO("World -> Camera is: [x y z r p y] :");
-        std::cout<<camera_pose.position.x<<std::endl;
-        std::cout<<camera_pose.position.y<<std::endl;
-        std::cout<<camera_pose.position.z<<std::endl;
-        std::cout<<camera_pose.orientation.x<<std::endl;
+        // printf("\nYes, the pose of kinect was obtained.\n");
+        // ROS_INFO("World -> Camera is: [x y z r p y] :");
+        // std::cout<<camera_pose.position.x<<std::endl;
+        // std::cout<<camera_pose.position.y<<std::endl;
+        // std::cout<<camera_pose.position.z<<std::endl;
+        // std::cout<<camera_pose.orientation.x<<std::endl;
         // std::cout<<camera_pose.orientation.y<<std::endl;
         // std::cout<<camera_pose.orientation.z<<std::endl;
         // std::cout<<camera_pose.orientation.w<<std::endl;

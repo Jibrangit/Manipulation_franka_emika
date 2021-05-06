@@ -25,10 +25,10 @@ int main(int argc, char **argv)
         IK_location.z = transformStamped.transform.translation.z; 
         IK_location_pub.publish(IK_location);
 
-        std::cout<<"\nThe object location in world is: \n";
-        std::cout<<transformStamped.transform.translation.x<<std::endl;
-        std::cout<<transformStamped.transform.translation.y<<std::endl;
-        std::cout<<transformStamped.transform.translation.z<<std::endl;
+        // std::cout<<"\nThe object location in world is: \n";
+        // std::cout<<transformStamped.transform.translation.x<<std::endl;
+        // std::cout<<transformStamped.transform.translation.y<<std::endl;
+        // std::cout<<transformStamped.transform.translation.z<<std::endl;
         }
         catch (tf2::TransformException &ex) {
         ROS_WARN("%s",ex.what());
